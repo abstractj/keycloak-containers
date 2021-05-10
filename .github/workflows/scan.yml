@@ -14,7 +14,8 @@ jobs:
 
       - name: Build an image from Dockerfile
         run: |
-          docker build -t quay.io/abstractj/keycloak:${{ github.sha }} server/Dockerfile --build-arg GIT_REPO=keycloak/keycloak --build-arg GIT_BRANCH=master
+          cd server
+          docker build -t quay.io/abstractj/keycloak:${{ github.sha }} . --build-arg GIT_REPO=keycloak/keycloak --build-arg GIT_BRANCH=master
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
